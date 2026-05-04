@@ -1,8 +1,5 @@
 {{ config(
-    materialized = (
-        'incremental' if fivetran_log.is_incremental_compatible() 
-        else 'table'
-    ),
+    materialized = 'incremental',
     unique_key = (
         'unique_table_sync_key' if (
             (target.type in ('postgres', 'redshift', 'snowflake', 'sqlserver'))
