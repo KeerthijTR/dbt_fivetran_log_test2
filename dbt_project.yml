@@ -2,7 +2,7 @@ config-version: 2
 name: 'fivetran_log'
 version: '2.5.2'
 require-dbt-version: [">=1.3.0", "<3.0.0"]
-
+profile: 'EDL_FIVETRAN_USER'
 models:
   fivetran_log:
     +materialized: table
