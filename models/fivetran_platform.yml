@@ -174,6 +174,11 @@ models:
       Table of schema changes for each connection, including table alterations, table creations,
       schema configuration changes, and schema creations.
     columns:
+      - name: schema_change_key
+        description: Primary key of the table, hashed on `connection_id`, `created_at`, `event_subtype`, and `message_data`.
+        tests:
+          - unique
+          - not_null
       - name: connection_id
         description: System generated unique ID of the connection.
       - name: connection_name
@@ -192,6 +197,8 @@ models:
         description: Name of the table if it was altered or created. 
       - name: schema_name
         description: Name of the schema if it was created. 
+      - name: schema_change_day
+        description: The `created_at` field truncated to the `day`, used for partitioning with the `insert_overwrite` incremental method.
 
   - name: fivetran_platform__audit_user_activity
     description: >
